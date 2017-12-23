@@ -21,6 +21,8 @@ services:
       - /srv/api-platform/var/logs/
       - /srv/api-platform/var/sessions/
       - /srv/api-platform/vendor/
+    restart: always
+
   db:
     build:
       context: ./docker/db
@@ -35,16 +37,19 @@ services:
       - db-data:/var/lib/mysql:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/mysql:rw
+    restart: always
+
   nginx:
     build:
       context: ./docker/nginx
       dockerfile: ./Dockerfile
     volumes:
       # Comment out the next line in production
-      - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./web:/srv/api-platform/web:ro
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d:rw
+      - ./web:/srv/api-platform/web:rw
     ports:
       - "8080:80"
+    restart: always
 
   varnish:
     build:
@@ -57,6 +62,7 @@ services:
       - ./docker/varnish/conf:/etc/varnish:ro
     ports:
       - "810:80"
+    restart: always
 
 volumes:
   app-web: {}
