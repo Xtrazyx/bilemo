@@ -8,8 +8,17 @@ security:
         doctrine:
             entity:
                 class: App\Entity\Company
+                property: username
 
     firewalls:
+        overview:
+            pattern: ^/api$
+            anonymous: true
+
+        docs:
+            pattern: ^/api/docs
+            anonymous: true
+
         login:
             pattern:  ^/api/login
             stateless: true
@@ -17,8 +26,6 @@ security:
             form_login:
                 check_path: /api/login_check
                 require_previous_session: false
-                username_parameter: username
-                password_parameter: password
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
@@ -30,6 +37,9 @@ security:
                     - lexik_jwt_authentication.jwt_token_authenticator
 
     access_control:
+        - { path: ^/api$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/docs, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/customers, roles: ROLE_COMPANY }
+        - { path: ^/api/phones, roles: ROLE_COMPANY }
+        - { path: ^/api/companies, roles: ROLE_COMPANY }

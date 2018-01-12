@@ -9,7 +9,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Phone
  *
- * @ApiResource
+ * @ApiResource(
+ *     collectionOperations={
+ *         "get" = { "method" = "GET" }
+ *     },
+ *     itemOperations={
+ *         "get" = { "method" = "GET", "access_control" = "is_granted('ROLE_COMPANY')" }
+ *     }
+ * )
+ *
  * @ORM\Entity
  */
 class Phone

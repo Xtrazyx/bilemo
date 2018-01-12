@@ -1,0 +1,11 @@
+shoplifter:
+    password: glop
+    email: contact@shoplifter.com
+
+thephoneshop:
+    password: blop
+    email: sells@thephoneshop.com
+
+myphone:
+    password: phono
+    email: head@myphone.com

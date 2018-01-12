@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -11,13 +12,16 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ApiResource(
  *     collectionOperations={
- *         "get"={"method"="GET"},
- *         "post"={"method"="POST", "access_control"="is_granted('ROLE_COMPANY')"}
+ *         "special" = { "route_name" = "post_customer", "access_control" = "is_granted('ROLE_COMPANY')" }
  *     },
  *     itemOperations={
- *         "get"={"method"="GET", "access_control"="is_granted('ROLE_COMPANY') and object.company == company"}
- *     }
+ *         "get" = { "method" = "GET", "access_control" = "is_granted('ROLE_COMPANY') and object.company == user" },
+ *         "delete" = { "method" = "DELETE", "access_control" = "is_granted('ROLE_COMPANY') and object.company == user" },
+ *         "put" = { "method" = "PUT", "access_control" = "is_granted('ROLE_COMPANY') and object.company == user" }
+ *     },
+ *     attributes = { "normalization_context" = { "groups" = { "customer" } } }
  * )
+ *
  * @ORM\Entity
  */
 class Customer
@@ -28,6 +32,7 @@ class Customer
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
+     * @Groups({"customer"})
      */
     private $id;
 
@@ -36,6 +41,7 @@ class Customer
      *
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=45)
+     * @Groups({"customer"})
      */
     private $firstName;
 
@@ -44,6 +50,7 @@ class Customer
      *
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=45)
+     * @Groups({"customer"})
      */
     private $lastName;
 
@@ -52,6 +59,7 @@ class Customer
      *
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=45)
+     * @Groups({"customer"})
      */
     private $address;
 
@@ -59,6 +67,7 @@ class Customer
      * @var string
      *
      * @ORM\Column(type="string", length=45, nullable=true)
+     * @Groups({"customer"})
      */
     private $phoneNumber = "";
 
@@ -68,7 +77,7 @@ class Customer
      * @ORM\ManyToOne(targetEntity="Company", inversedBy="customers")
      * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      */
-    private $company;
+    public $company;
 
     /**
      * @return int
@@ -156,6 +165,7 @@ class Customer
     public function setCompany(Company $company)
     {
         $this->company = $company;
+        $company->addCustomer($this);
     }
 
 }

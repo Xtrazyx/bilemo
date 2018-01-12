@@ -3,16 +3,25 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use ArrayAccess;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Company
  *
- * @ApiResource
+ * @ApiResource(
+ *     collectionOperations={},
+ *     itemOperations={
+ *         "get" = { "method" = "GET", "access_control" = "is_granted('ROLE_COMPANY') and object == user" }
+ *     },
+ *     attributes = { "normalization_context" = { "groups" = { "company" } } }
+ * )
+ *
  * @ORM\Entity
  */
 class Company implements UserInterface
@@ -23,6 +32,7 @@ class Company implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
+     * @Groups({"company"})
      */
     private $id;
 
@@ -31,6 +41,7 @@ class Company implements UserInterface
      *
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=45, unique=true)
+     * @Groups({"company"})
      */
     private $username;
 
@@ -38,7 +49,7 @@ class Company implements UserInterface
      * @var string
      *
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=45, unique=true)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $password;
 
@@ -47,6 +58,7 @@ class Company implements UserInterface
      *
      * @Assert\Email()
      * @ORM\Column(type="string", length=45)
+     * @Groups({"company"})
      */
     private $email;
 
@@ -61,6 +73,8 @@ class Company implements UserInterface
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Customer", mappedBy="company", cascade={"remove", "persist"})
+     * @ApiSubresource
+     * @Groups({"company"})
      */
     private $customers;
 
@@ -141,7 +155,6 @@ class Company implements UserInterface
     public function addCustomer(Customer $customer)
     {
         $this->customers->add($customer);
-        $customer->setCompany($this);
     }
 
     public function removeCustomer(Customer $customer)
@@ -151,7 +164,6 @@ class Company implements UserInterface
 
     public function eraseCredentials()
     {
-        // TODO: Implement eraseCredentials() method.
     }
 
     public function getRoles()
@@ -166,6 +178,6 @@ class Company implements UserInterface
 
     public function getSalt()
     {
-        // TODO: Implement getSalt() method.
+        return null;
     }
 }

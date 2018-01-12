@@ -1,0 +1,89 @@
+phone1:
+    name:         S12
+    brand:	      Samung
+    serial:	      "S12-654Px"
+    description:  "Un super téléphone!"
+    os:           "Android 4.0"
+    screenSize:   8
+    screenWidth:  120
+    screenHeight: 360
+
+phone2:
+    name:         S54
+    brand:	      Samung
+    serial:	      "S54-68954Px"
+    description:  "Un super génial téléphone!"
+    os:           "Android 4.0"
+    screenSize:   5
+    screenWidth:  90
+    screenHeight: 260
+
+phone3:
+    name:         S12
+    brand:	      Samung
+    serial:	      "S12-654Px"
+    description:  "Vraiment pas de la tarte de trouver mieux."
+    os:           "Android 8.0"
+    screenSize:   8
+    screenWidth:  120
+    screenHeight: 360
+
+phone4:
+    name:         P15
+    brand:	      Phonsa
+    serial:	      "P15 EOM720--98"
+    description:  "Un super téléphone!"
+    os:           "Android 4.0"
+    screenSize:   8
+    screenWidth:  120
+    screenHeight: 360
+
+phone5:
+    name:         W69
+    brand:	      Windows
+    serial:	      "Wx69-66652020//966321"
+    description:  "Une machine ... complexe et sensible"
+    os:           "Windows Phone 1.2"
+    screenSize:   12
+    screenWidth:  220
+    screenHeight: 460
+
+phone6:
+    name:         S12
+    brand:	      Samung
+    serial:	      "S12-654Px"
+    description:  "Un super téléphone!"
+    os:           "Android 4.0"
+    screenSize:   8
+    screenWidth:  120
+    screenHeight: 360
+
+phone7:
+    name:         S12
+    brand:	      Samung
+    serial:	      "S12-654Px"
+    description:  "Un super téléphone!"
+    os:           "Android 4.0"
+    screenSize:   8
+    screenWidth:  120
+    screenHeight: 360
+
+phone8:
+    name:         S12
+    brand:	      Samung
+    serial:	      "S12-654Px"
+    description:  "Un super téléphone!"
+    os:           "Android 4.0"
+    screenSize:   8
+    screenWidth:  120
+    screenHeight: 360
+
+phone9:
+    name:         S12
+    brand:	      Samung
+    serial:	      "S12-654Px"
+    description:  "Un super téléphone!"
+    os:           "Android 4.0"
+    screenSize:   8
+    screenWidth:  120
+    screenHeight: 360
