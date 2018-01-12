@@ -1,0 +1,34 @@
+customer1:
+    firstName:    Jojo
+    lastName:     Robert
+    address:      'Rue des Jean-Jacques'
+    phoneNumber:  '+33 78523659141'
+    company:      shoplifter
+
+customer2:
+    firstName:    Juju
+    lastName:     Lepain
+    address:      '17 Rue des Jean-Jacques 58600 RobertVille'
+    phoneNumber:  '+33 78523659141'
+    company:      shoplifter
+
+customer3:
+    firstName:    Patrice
+    lastName:     Patricio
+    address:      "Place de l'inconnu"
+    phoneNumber:  '78523659141'
+    company:      thephoneshop
+
+customer4:
+    firstName:    Rene
+    lastName:     Lambert
+    address:      '89 avenue du pont'
+    phoneNumber:  '68542659141'
+    company:      myphone
+
+customer5:
+    firstName:    Jacqueline
+    lastName:     Durand
+    address:      '21 rue des Marguerites 75021 Paris'
+    phoneNumber:  '+33 0698562531'
+    company:      myphone
