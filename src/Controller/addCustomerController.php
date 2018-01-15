@@ -8,7 +8,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Company;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,7 +22,7 @@ class addCustomerController extends Controller
      * @Route(
      *     name="post_customer",
      *     path="/api/customers",
-     *     defaults={ "_api_resource_class" = Customer::class, "_api_collection_operation_name" = "special"},
+     *     defaults={ "_api_resource_class" = Customer::class, "_api_collection_operation_name" = "create_customer"},
      *    methods="POST"
      * )
      *
@@ -32,7 +31,7 @@ class addCustomerController extends Controller
      */
     public function addCustomerAction(Customer $data)
     {
-        // Getting authentified user
+        // Getting authorized user
         $company = $this->getUser();
 
         $userCompanyURI = '/api/companies/' . $company->getId();
@@ -41,7 +40,7 @@ class addCustomerController extends Controller
             return new JsonResponse(
                 array(
                     "code" => "403",
-                    "message" => "Your are not allowed to create user for another company. Check your company Id",
+                    "message" => "Your are not allowed to create customer for another company. Check your company Id",
                     "your company Id URI" => $userCompanyURI
                 ),
                 403

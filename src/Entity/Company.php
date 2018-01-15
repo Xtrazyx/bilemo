@@ -15,7 +15,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Company
  *
  * @ApiResource(
- *     collectionOperations={},
  *     itemOperations={
  *         "get" = { "method" = "GET", "access_control" = "is_granted('ROLE_COMPANY') and object == user" }
  *     },

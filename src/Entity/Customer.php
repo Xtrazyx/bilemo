@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ApiResource(
  *     collectionOperations={
- *         "special" = { "route_name" = "post_customer", "access_control" = "is_granted('ROLE_COMPANY')" }
+ *         "create_customer" = { "route_name" = "post_customer", "access_control" = "is_granted('ROLE_COMPANY')" }
  *     },
  *     itemOperations={
  *         "get" = { "method" = "GET", "access_control" = "is_granted('ROLE_COMPANY') and object.company == user" },
