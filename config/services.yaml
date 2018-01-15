@@ -18,10 +18,11 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\Controller\addCustomerController:
-        arguments:
-            - '@lexik_jwt_authentication.security.guard.jwt_token_authenticator'
-            - '@lexik_jwt_authentication.jwt_manager'
+    App\Security\CompanyVoter:
+        tags: ['security.voter']
 
-    Symfony\Component\HttpFoundation\Request:
-        class: Symfony\Component\HttpFoundation\Request
+    event_listener.resource.control_access:
+        class: App\EventListener\ControlAccessListener
+        arguments: ['@security.authorization_checker']
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController ,priority: 12 }

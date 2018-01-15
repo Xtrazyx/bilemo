@@ -11,6 +11,6 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-###> phpunit/phpunit ###
-/phpunit.xml
-###< phpunit/phpunit ###
+###> behat/symfony2-extension ###
+behat.yml.dist
+###< behat/symfony2-extension ###
