@@ -33,8 +33,6 @@ class ApiTest extends WebTestCase
 
         $data = json_decode($client->getResponse()->getContent(), true);
 
-        echo serialize($data);
-
         $client = static::createClient();
         $client->setServerParameter('HTTP_Authorization', sprintf('Bearer %s', $data['token']));
 
